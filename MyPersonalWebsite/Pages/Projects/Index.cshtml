@@ -5,14 +5,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Projects</h1>
+<h1>Projecten</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Voeg nieuw project toe</a>
 </p>
 
 <form>
     <p>
+        <select asp-for="ProgrammeerTaal" asp-items="Model.ProgrammeerTalen">
+            <option value="">Alle Programmeertalen</option>
+        </select>
         Project Titel: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Zoek" />
     </p>

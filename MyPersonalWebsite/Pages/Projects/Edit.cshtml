@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Project.Omschrijving" class="control-label"></label>
-                <input asp-for="Project.Omschrijving" class="form-control" />
+                <textarea asp-for="Project.Omschrijving" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Project.Omschrijving" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -47,7 +47,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Terug naar lijst</a>
 </div>
 
 @section Scripts {

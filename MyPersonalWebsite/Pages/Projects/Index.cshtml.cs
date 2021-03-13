@@ -32,13 +32,26 @@ namespace MyPersonalWebsite.Pages.Projects
 
         public async Task OnGetAsync()
         {
+            // Gebruik Linq om lijst van genres te verkrijgen.
+            IQueryable<string> programmeerTaalQuery = from p in _context.Project
+                                                      orderby p.ProgrammeerTaal
+                                                      select p.ProgrammeerTaal;
+
+            // Gebruik linq om de projecten verkrijgbaar te maken en daarna door de lijst te filteren met de "SearchString".
             var projects = from p in _context.Project
                            select p;
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 projects = projects.Where(s => s.Titel.Contains(SearchString));
             }
 
+            if (!string.IsNullOrEmpty(ProgrammeerTaal))
+            {
+                projects = projects.Where(p => p.ProgrammeerTaal == ProgrammeerTaal);
+            }
+
+            ProgrammeerTalen = new SelectList(await programmeerTaalQuery.Distinct().ToListAsync());
             Project = await projects.ToListAsync();
         }
     }
