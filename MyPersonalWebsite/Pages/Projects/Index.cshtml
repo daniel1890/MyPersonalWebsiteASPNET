@@ -1,0 +1,38 @@
+﻿@page "{searchString?}"
+@model MyPersonalWebsite.Pages.Projects.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Projects</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <p>
+        Project Titel: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Zoek" />
+    </p>
+</form>
+
+<div class="card-columns">
+    @foreach (var project in Model.Project)
+    {
+        <div class="card">
+            <div class="card-img" style="background-image: url('@project.Image');"></div>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    @project.Titel
+                </h5>
+                <div>
+                    <a class="btn btn-outline-primary" asp-page="./Edit" asp-route-id="@project.ID">Edit</a> |
+                    <a class="btn btn-outline-primary" asp-page="./Details" asp-route-id="@project.ID">Details</a> |
+                    <a class="btn btn-outline-danger" asp-page="./Delete" asp-route-id="@project.ID">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
